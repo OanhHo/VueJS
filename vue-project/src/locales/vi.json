@@ -7,11 +7,6 @@
         "form" : "Mẫu",
         "table" : "Bảng"
     },
-    "formElement" : {
-        "name" : "Tên",
-        "age"  : "Tuổi",
-        "phone" : "SDT"
-    },
     "footer" : {
         "about" : "Về chúng tôi",
         "support" : "Hỗ trợ",

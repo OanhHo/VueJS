@@ -13,8 +13,8 @@
                                 <input class="form-control" type="text" placeholder="Search..">
                             </div>
                         </li>
-                        <li class="nav-item dropdown connection" v-for="(language, index) in languages" :key="index" v-on:click="handleChangeLanguage(language.key)">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ language.name }}</a>
+                        <li>
+                            <v-select class="style-chooser" :components="{OpenIndicator}" placeholder="Select the locale!" label="select" v-model="selected" :options="this.locales" @input="handleChangeLanguage(selected)" ></v-select>
                         </li>
                     </ul>
                 </div>
@@ -26,13 +26,16 @@
 <script>
 export default {
     props : {
-        languages : {
+        locales : {
             type : Array
         }
     },
     data() {
         return {
-
+            selected: '',
+            OpenIndicator: {
+                render: createElement => createElement('span', {class: {'toggle': true}}),
+            },
         }
     },
     methods: {
@@ -40,9 +43,27 @@ export default {
             this.$emit('changeLang', value);
         }
     },
+    mounted() {
+        
+    },
 }
 </script>
 
-<style>
-    
+<style scoped>
+  .style-chooser .vs__search::placeholder,
+  .style-chooser .vs__dropdown-toggle,
+  .style-chooser .vs__dropdown-menu {
+    background: #dfe5fb;
+    border: none;
+    color: #394066;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    display: none;
+  }
+
+  .style-chooser .vs__clear,
+  .style-chooser .vs__open-indicator {
+    fill: #394066;
+    bottom: 0%;
+  }
 </style>

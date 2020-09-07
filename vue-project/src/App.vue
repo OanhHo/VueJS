@@ -1,6 +1,6 @@
 <template>
   <div id="app" >
-    <HeaderComponent v-on:changeLang="changeLanguage" :languages="languages" />
+    <HeaderComponent v-on:changeLang="changeLanguage" :locales="locales"/>
     <LeftSidebar />
     <ContentComponent />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">\
@@ -24,25 +24,21 @@ export default {
   },
   data() {
     return {
-      languages : [
-        {
-          "key" : "vi",
-          "name" : "Tiếng Việt",
-        },
-        {
-          "key" : "en",
-          "name" : "English"
-        }
-      ],
+      locales : [],
     }
   },
   methods: {
-    changeLanguage(language) {
-      localStorage.setItem('language', language);
-      i18n.locale = language
+    changeLanguage(locale) {
+      localStorage.setItem('locale', locale);
+      i18n.locale = locale
     }
   },
-}
+  created(){
+    for (const key in i18n.messages){
+      this.locales.push(key)
+      }
+    }
+  }
 </script>
 
 <style>

@@ -1,4 +1,5 @@
 {
+    "hello": "hello",
     "menu" : {
         "menu" : "Menu",
         "dashboard" : "Dashboard",

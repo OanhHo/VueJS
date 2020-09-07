@@ -1,19 +1,26 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import viLanguage from './languages/vi.json'
-import enLanguage from './languages/en.json'
 
 Vue.use(VueI18n)
 
-const messages = {
-    'vi' : viLanguage,
-    'en' : enLanguage
+function loadLocaleMessages() {
+    const locales = require.context(
+      "./locales",
+      true,
+      /[A-Za-z0-9-_,\s]+\.json$/i
+    );
+    const messages = {};
+    locales.keys().forEach(key => {
+      const matched = key.match(/([A-Za-z0-9-_]+)\./i);
+      if (matched && matched.length > 1) {
+        const locale = matched[1];
+        messages[locale] = locales(key);
+      }
+    });
+    return messages;
 }
-
-let defaultLanguage = localStorage.getItem('language') ?? 'vi'
-
 export const i18n = new VueI18n({
-    locale: defaultLanguage,
+    locale: 'en',
     fallbackLocale: 'vi',
-    messages
+    messages: loadLocaleMessages()
 })
