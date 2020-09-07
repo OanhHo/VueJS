@@ -1,0 +1,15 @@
+{
+    "menu" : {
+        "menu" : "Menu",
+        "dashboard" : "Dashboard",
+        "element" : "Elements",
+        "chart" : "Chart",
+        "form" : "Form",
+        "table" : "Tables"
+    },
+    "footer" : {
+        "about" : "About",
+        "support" : "Support",
+        "contact" : "Contact Us"
+    }
+}
